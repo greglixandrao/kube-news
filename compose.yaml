@@ -1,0 +1,32 @@
+services:
+  postgre:
+   image: postgre:13.13
+   ports:
+     - 5432:5432
+   networks:
+     - kubnews_net
+   environment:
+     POSTGRES_PASSWORD: pg1234
+     POSTGRES_USER: kubnews
+     POSTGRES_DB: kubnews
+
+  kubnews:
+   image:
+   depends_on:
+     - postgre
+   build:
+    context: ./src
+    dockerfile: ./Dockerfile
+   networks:
+     - kubnews_net
+   ports:
+     - 8080:8080
+   environment:
+    DB_DATABASE: kubnews
+    DB_USERNAME: kubnews
+    DB_PASSWORD: pg1234
+    DB_HOST: postgre
+
+networks:
+  kubnews_net:
+    driver: bridge
