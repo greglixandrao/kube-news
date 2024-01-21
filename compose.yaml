@@ -13,7 +13,7 @@ services:
   kubnews:
     image: greglixandrao/kube-news:v1
     depends_on:
-     - postgre
+      - postgre
     build:
       context: ./src
       dockerfile: ./Dockerfile
