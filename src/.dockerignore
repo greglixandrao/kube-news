@@ -1,5 +1,6 @@
 **/node_modules/
 **/dist/
+**/k8s/
 .git
 npm-debug.log
 .coverage
